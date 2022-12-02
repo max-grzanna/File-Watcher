@@ -5,18 +5,35 @@ from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler
 from watchdog.events import PatternMatchingEventHandler
 
+def sanitize_path(path: str):
+
+    # Some apps tend to append their name to the scanned documents 
+
+    string_to_delete = "_QuickScan"
+    file_name = path.split("/")[-1]
+
+    if string_to_delete in file_name:
+        print("Changing filename...")
+        new_path = path.replace(string_to_delete, "")
+        new_path = new_path.replace("/", "")
+   
+    return new_path
+        
+
 def on_created(event):
-    print(f"hey, {event.src_path} has been created!")
+    print(f"{event.src_path} has been created!")
+    file_name = sanitize_path(event.src_path)
+
+
  
 def on_deleted(event):
-    print(f"what the f**k! Someone deleted {event.src_path}!")
- 
+    pass
+
 def on_modified(event):
-    print(f"hey buddy, {event.src_path} has been modified")
+    pass
 
 def on_moved(event):
-    print(f"ok ok ok, someone moved {event.src_path} to {event.dest_path}")
-
+    pass
 
 
 if __name__ == "__main__":
