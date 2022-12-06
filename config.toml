@@ -1,0 +1,10 @@
+[general]
+# genral settings
+origin_path = "origin/"
+destination_path = "temp/"
+
+[ocr]
+# Settings for ocrmypdf. See docs: https://ocrmypdf.readthedocs.io/en/latest/index.html
+deskew = "True"
+clean = "True"
+clean_final = "False"
